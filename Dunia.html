@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Explora Mundo - Agencia de viajes especializada en destinos únicos y experiencias inolvidables. Paquetes todo incluido a los mejores precios.">
+  <meta name="keywords" content="viajes, turismo, destinos, paquetes vacacionales, agencia de viajes">
+  <title>Explora Mundo - Agencia de Viajes | Destinos Únicos y Experiencias Inolvidables</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --accent:#4394b9;
+      --accent-dark:#2c7a9c;
+      --dark:#0f172a;
+      --muted:#455264;
+      --card:#ffffffcc;
+      --light-bg:#f8fafc;
+      --success:#28a745;
+      --error:#dc3545;
+      --warning:#ffc107;
+      --mystery:#8a2be2;
+      --mystery-dark:#6a1bb3;
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      background:linear-gradient(180deg, var(--light-bg), #eef2f7);
+      color:var(--dark);
+      line-height:1.6;
+    }
+    header{
+      background:rgba(255,255,255,0.95);
+      backdrop-filter:blur(6px);
+      position:sticky;
+      top:0;
+      z-index:40;
+      border-bottom:1px solid #e6eef3;
+      transition: box-shadow 0.3s ease;
+    }
+    header.scrolled {
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+    .container{max-width:1100px;margin:0 auto;padding:0 24px}
+    nav{display:flex;align-items:center;justify-content:space-between;padding:16px 0}
+    .brand{display:flex;gap:12px;align-items:center}
+    .brand h1{margin:0;font-size:20px;color:var(--accent)}
+    .nav-links{display:flex;gap:16px}
+    .nav-links a{color:var(--dark);text-decoration:none;font-weight:600;transition:color 0.2s ease}
+    .nav-links a:hover{color:var(--accent);}
+    .hero{
+      padding:48px 0;
+      display:grid;
+      grid-template-columns:1fr 420px;
+      gap:24px;
+      align-items:center
+    }
+    .hero .lead{
+      background:var(--card);
+      padding:28px;
+      border-radius:14px;
+      box-shadow:0 6px 18px rgba(2,6,23,0.06)
+    }
+    .cta{
+      display:inline-block;
+      margin-top:16px;
+      padding:12px 20px;
+      border-radius:10px;
+      background:var(--accent);
+      color:white;
+      text-decoration:none;
+      font-weight:700;
+      transition: background 0.3s ease, transform 0.2s ease;
+      border: none;
+      cursor: pointer;
+    }
+    .cta:hover {
+      background: var(--accent-dark);
+      transform: translateY(-2px);
+    }
+
+    /* Botón especial para paquete misterioso */
+    .cta-mystery {
+      background: var(--mystery);
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-mystery:hover {
+      background: var(--mystery-dark);
+    }
+    .cta-mystery::before {
+      content: '✨';
+      position: absolute;
+      left: 10px;
+      animation: sparkle 2s infinite;
+    }
+
+    /* Gallery */
+    .gallery{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:16px;
+      margin:36px 0
+    }
+    .card{
+      background:var(--card);
+      border-radius:12px;
+      overflow:hidden;
+      box-shadow:0 6px 18px rgba(2,6,23,0.06);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 24px rgba(2,6,23,0.12);
+    }
+    .card img{
+      width:100%;
+      height:160px;
+      object-fit:cover;
+      display:block;
+      transition: transform 0.5s ease;
+    }
+    .card:hover img {
+      transform: scale(1.05);
+    }
+    .card .info{padding:12px}
+    .card h3{margin:0 0 6px;font-size:16px}
+    .card p{margin:0;color:var(--muted);font-size:14px}
+    
+    /* Favorite button */
+    .favorite-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: rgba(255,255,255,0.8);
+      border: none;
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      z-index: 2;
+    }
+    .favorite-btn:hover {
+      background: white;
+      transform: scale(1.1);
+    }
+    .favorite-btn.active {
+      color: #e1306c;
+    }
+    
+    /* Packages */
+    .packages{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+      gap:16px;
+      margin:36px 0
+    }
+    .pkg{
+      padding:16px;
+      border-radius:12px;
+      background:linear-gradient(180deg,#fff,#fbfdff);
+      border:1px solid #eef6f7;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+    }
+    .pkg:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(2,6,23,0.08);
+    }
+
+    /* Estilos especiales para paquete misterioso */
+    .pkg-mystery {
+      background: linear-gradient(135deg, #f8f4ff, #eef2ff);
+      border: 2px dashed var(--mystery);
+      position: relative;
+      overflow: hidden;
+    }
+    .pkg-mystery::before {
+      content: '❓';
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 24px;
+      opacity: 0.7;
+    }
+    .pkg-mystery .price {
+      color: var(--mystery);
+    }
+
+    .price{font-size:20px;font-weight:700;color:var(--accent)}
+    .pkg-features {
+      margin: 12px 0;
+      padding-left: 16px;
+    }
+    .pkg-features li {
+      margin-bottom: 6px;
+      font-size: 14px;
+    }
+    
+    /* Cart badge */
+    .cart-badge {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background: var(--accent);
+      color: white;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    /* Contact */
+    .contact{
+      display:grid;
+      grid-template-columns:1fr 420px;
+      gap:20px;
+      margin:36px 0
+    }
+    form{
+      background:var(--card);
+      padding:24px;
+      border-radius:12px;
+      box-shadow:0 6px 18px rgba(2,6,23,0.04)
+    }
+    .form-group {
+      margin-bottom: 16px;
+      position: relative;
+    }
+    input,textarea,select{
+      width:100%;
+      padding:12px;
+      border-radius:8px;
+      border:1px solid #dbe7ea;
+      font-size:14px;
+      font-family: inherit;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    input:focus, textarea:focus, select:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(67, 148, 185, 0.2);
+    }
+    input.valid, textarea.valid, select.valid {
+      border-color: var(--success);
+    }
+    input.invalid, textarea.invalid, select.invalid {
+      border-color: var(--error);
+    }
+    button{
+      background:var(--accent);
+      color:white;
+      padding:12px 20px;
+      border-radius:10px;
+      border:0;
+      font-weight:700;
+      cursor:pointer;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+    button:hover{
+      background:var(--accent-dark);
+      transform: translateY(-2px);
+    }
+    footer{
+      padding:24px 0;
+      color:var(--muted);
+      text-align:center;
+      border-top: 1px solid #e6eef3;
+      margin-top: 40px;
+    }
+    .section-title {
+      position: relative;
+      padding-bottom: 12px;
+      margin-bottom: 24px;
+    }
+    .section-title:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background: var(--accent);
+      border-radius: 2px;
+    }
+    
+    /* Mobile menu styles */
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: var(--dark);
+      padding: 8px;
+    }
+    
+    /* Search and filter */
+    .search-filter {
+      display: flex;
+      gap: 12px;
+      margin: 20px 0;
+      flex-wrap: wrap;
+    }
+    .search-box {
+      flex: 1;
+      min-width: 250px;
+    }
+    .filter-options {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .filter-btn {
+      background: white;
+      border: 1px solid #dbe7ea;
+      padding: 8px 16px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .filter-btn.active {
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
+    }
+    
+    /* Modal */
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+    .modal.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    .modal-content {
+      background: white;
+      border-radius: 12px;
+      max-width: 800px;
+      width: 90%;
+      max-height: 90vh;
+      overflow-y: auto;
+      position: relative;
+      transform: translateY(20px);
+      transition: transform 0.3s ease;
+    }
+    .modal.active .modal-content {
+      transform: translateY(0);
+    }
+    .modal-close {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      z-index: 10;
+    }
+    
+    /* Toast notifications */
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: var(--dark);
+      color: white;
+      padding: 12px 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      z-index: 1000;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.3s ease;
+    }
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    .toast.success {
+      background: var(--success);
+    }
+    .toast.error {
+      background: var(--error);
+    }
+    .toast.warning {
+      background: var(--warning);
+      color: var(--dark);
+    }
+    .toast.mystery {
+      background: var(--mystery);
+    }
+    
+    /* Loading spinner */
+    .spinner {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 3px solid rgba(255,255,255,0.3);
+      border-radius: 50%;
+      border-top-color: white;
+      animation: spin 1s ease-in-out infinite;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes sparkle {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.7; transform: scale(1.2); }
+    }
+
+    /* Animación especial para revelar destino misterioso */
+    @keyframes reveal {
+      0% { transform: scale(0.8); opacity: 0; }
+      50% { transform: scale(1.1); opacity: 0.7; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .reveal-animation {
+      animation: reveal 0.6s ease-out;
+    }
+    
+    /* Destination type badges */
+    .destination-badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: rgba(255,255,255,0.9);
+      padding: 4px 8px;
+      border-radius: 12px;
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      z-index: 2;
+    }
+    .badge-nacional {
+      background: rgba(76, 175, 80, 0.9);
+      color: white;
+    }
+    .badge-internacional {
+      background: rgba(33, 150, 243, 0.9);
+      color: white;
+    }
+    
+    @media (max-width:900px){
+      .hero{grid-template-columns:1fr}
+      .contact{grid-template-columns:1fr}
+      .hero .lead{order:2}
+      .mobile-menu-btn {
+        display: block;
+      }
+      .nav-links {
+        position: fixed;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: rgba(255,255,255,0.98);
+        backdrop-filter: blur(10px);
+        flex-direction: column;
+        padding: 20px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        transform: translateY(-100%);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        z-index: 30;
+      }
+      .nav-links.active {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+      }
+      .nav-links a {
+        padding: 12px 0;
+        border-bottom: 1px solid #f0f0f0;
+        width: 100%;
+        text-align: center;
+      }
+    }
+    
+    .insta{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      color:var(--accent);
+      font-weight:600;
+      text-decoration:none;
+      margin-top:10px;
+      transition: color 0.3s ease;
+    }
+    .insta svg{width:20px;height:20px;}
+    .insta:hover{color:#e1306c;}
+    
+    /* Loading animation for images */
+    .card img {
+      background: #f0f0f0;
+    }
+    
+    /* Success message */
+    .success-message {
+      background: #d4edda;
+      color: #155724;
+      padding: 12px;
+      border-radius: 8px;
+      margin-top: 16px;
+      display: none;
+    }
+    
+    /* Loading state for form */
+    .loading {
+      opacity: 0.7;
+      pointer-events: none;
+    }
+    
+    /* Back to top button */
+    .back-to-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: var(--accent);
+      color: white;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      z-index: 100;
+      border: none;
+      font-size: 18px;
+    }
+    
+    .back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    /* Error message */
+    .error-message {
+      color: #e74c3c;
+      font-size: 14px;
+      margin-top: 5px;
+      display: none;
+    }
+    
+    /* Image fallback */
+    .card img {
+      background: linear-gradient(135deg, #f0f0f0, #e0e0e0);
+    }
+  </style>
+</head>
+<body>
+  <header id="header">
+    <div class="container">
+      <nav>
+        <div class="brand">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M2 12c0 5.523 4.477 10 10 10s10-4.477 10-10S17.523 2 12 2 2 6.477 2 12z" fill="var(--accent)"/></svg>
+          <h1>Explora Mundo</h1>
+        </div>
+        <div class="nav-links" id="navLinks">
+          <a href="#fotos">Fotos</a>
+          <a href="#paquetes">Paquetes</a>
+          <a href="#contacto">Contacto</a>
+          <a href="https://www.instagram.com/rncon.2502?igsh=dDkzbjk1Z2wyOHVy" target="_blank">Instagram</a>
+          <button id="cartBtn" class="cta" style="position:relative">
+            Carrito <span id="cartCount" class="cart-badge" style="display:none">0</span>
+          </button>
+        </div>
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Abrir menú">☰</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="lead">
+        <h2>Viajes que inspiran. Aventuras que recuerdas.</h2>
+        <p style="color:var(--muted);margin-top:8px">
+          Descubre los mejores destinos del mundo con nosotros: playas, ciudades icónicas, aventuras y relax. 
+          Encuentra tu próxima experiencia inolvidable.
+        </p>
+        <a class="cta" href="#paquetes">Ver paquetes</a>
+        <a class="insta" href="https://www.instagram.com/rncon.2502?igsh=dDkzbjk1Z2wyOHVy" target="_blank">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M7 2C4.243 2 2 4.243 2 7v10c0 2.757 2.243 5 5 5h10c2.757 0 5-2.243 5-5V7c0-2.757-2.243-5-5-5H7zm10 2c1.654 0 3 1.346 3 3v10c0 1.654-1.346 3-3 3H7c-1.654 0-3-1.346-3-3V7c0-1.654 1.346-3 3-3h10zM12 7a5 5 0 100 10 5 5 0 000-10zm0 2a3 3 0 110 6 3 3 0 010-6zm4.5-2a1.5 1.5 0 11-3.001-.001A1.5 1.5 0 0116.5 7z"/>
+          </svg>
+          Sígueme en Instagram
+        </a>
+      </div>
+      <div>
+        <img alt="Hermosa playa tropical con palmeras y aguas cristalinas" src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=800&auto=format&fit=crop" style="width:100%;border-radius:12px;box-shadow:0 8px 28px rgba(2,6,23,0.08)" loading="lazy"/>
+      </div>
+    </section>
+
+    <section id="fotos">
+      <h2 class="section-title">Galería de destinos</h2>
+      <p style="color:var(--muted)">Descubre algunos de los lugares más espectaculares que puedes visitar con nosotros.</p>
+      
+      <div class="search-filter">
+        <div class="search-box">
+          <input type="text" id="searchInput" placeholder="Buscar destinos..." aria-label="Buscar destinos">
+        </div>
+        <div class="filter-options">
+          <button class="filter-btn active" data-filter="all">Todos</button>
+          <button class="filter-btn active" data-filter="nacional">Nacionales</button>
+          <button class="filter-btn active" data-filter="internacional">Internacionales</button>
+          <button class="filter-btn active" data-filter="playa">Playas</button>
+          <button class="filter-btn active" data-filter="ciudad">Ciudades</button>
+          <button class="filter-btn active" data-filter="aventura">Aventura</button>
+          <button class="filter-btn active" data-filter="cultura">Cultura</button>
+          <button class="filter-btn active" data-filter="naturaleza">Naturaleza</button>
+        </div>
+      </div>
+      
+      <div class="gallery" id="destinationsGallery">
+        <!-- Todos los destinos existentes se mantienen aquí -->
+        <!-- ... contenido de destinos existentes ... -->
+      </div>
+    </section>
+
+    <section id="paquetes">
+      <h2 class="section-title">Paquetes de Viaje</h2>
+      <p style="color:var(--muted)">Elige el paquete que mejor se adapte a tus necesidades y presupuesto.</p>
+      <div class="packages">
+        <div class="pkg">
+          <h3>Básico</h3>
+          <div class="price">$899</div>
+          <ul class="pkg-features">
+            <li>Vuelo de ida y vuelta</li>
+            <li>Alojamiento en hotel 3 estrellas</li>
+            <li>Desayuno incluido</li>
+            <li>Traslados aeropuerto-hotel</li>
+          </ul>
+          <button class="cta" onclick="selectPackage('Básico')">Seleccionar</button>
+        </div>
+        <div class="pkg">
+          <h3>Estándar</h3>
+          <div class="price">$1,299</div>
+          <ul class="pkg-features">
+            <li>Vuelo de ida y vuelta</li>
+            <li>Alojamiento en hotel 4 estrellas</li>
+            <li>Desayuno y cena incluidos</li>
+            <li>Traslados y tour city</li>
+            <li>Seguro de viaje básico</li>
+          </ul>
+          <button class="cta" onclick="selectPackage('Estándar')">Seleccionar</button>
+        </div>
+        <div class="pkg">
+          <h3>Premium</h3>
+          <div class="price">$1,899</div>
+          <ul class="pkg-features">
+            <li>Vuelo de ida y vuelta en clase premium</li>
+            <li>Alojamiento en hotel 5 estrellas</li>
+            <li>Todas las comidas incluidas</li>
+            <li>Tours exclusivos y guía privado</li>
+            <li>Seguro de viaje completo</li>
+            <li>Spa y experiencias premium</li>
+          </ul>
+          <button class="cta" onclick="selectPackage('Premium')">Seleccionar</button>
+        </div>
+
+        <!-- ===== NUEVO PAQUETE MISTERIOSO ===== -->
+        <div class="pkg pkg-mystery">
+          <h3>🕵️‍♂️ Misterioso</h3>
+          <div class="price">$1,199</div>
+          <ul class="pkg-features">
+            <li>Destino sorpresa revelado 48h antes</li>
+            <li>Experiencias únicas y personalizadas</li>
+            <li>Alojamiento en hotel 4-5 estrellas</li>
+            <li>Todas las comidas incluidas</li>
+            <li>Actividades secretas incluidas</li>
+            <li>Sorpresas durante todo el viaje</li>
+          </ul>
+          <button class="cta cta-mystery" onclick="selectMysteryPackage()">¡Descubre la aventura!</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="contacto">
+      <h2 class="section-title">Contacto</h2>
+      <p style="color:var(--muted)">¿Tienes preguntas o deseas un itinerario personalizado? Contáctanos, te responderemos pronto.</p>
+      <div class="contact">
+        <form id="contactForm" onsubmit="submitForm(event)">
+          <div class="form-group">
+            <input type="text" id="name" placeholder="Nombre" required aria-describedby="nameError" />
+            <div class="error-message" id="nameError">Por favor ingresa tu nombre</div>
+          </div>
+          <div class="form-group">
+            <input type="email" id="email" placeholder="Correo electrónico" required aria-describedby="emailError" />
+            <div class="error-message" id="emailError">Por favor ingresa un correo válido</div>
+          </div>
+          <div class="form-group">
+            <select id="package" required aria-describedby="packageError">
+              <option value="" disabled selected>Selecciona un paquete</option>
+              <option value="Básico">Paquete Básico</option>
+              <option value="Estándar">Paquete Estándar</option>
+              <option value="Premium">Paquete Premium</option>
+              <option value="Misterioso">Paquete Misterioso</option>
+              <option value="Personalizado">Itinerario Personalizado</option>
+            </select>
+            <div class="error-message" id="packageError">Por favor selecciona un paquete</div>
+          </div>
+          <div class="form-group">
+            <textarea id="message" rows="4" placeholder="Mensaje" required aria-describedby="messageError"></textarea>
+            <div class="error-message" id="messageError">Por favor ingresa un mensaje</div>
+          </div>
+          <button type="submit" id="submitBtn">Enviar</button>
+          <div class="success-message" id="successMessage"></div>
+        </form>
+
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <div class="card" style="padding:12px"><strong>Teléfono:</strong><br><span style="color:var(--muted)">+52 392 940 3234</span></div>
+          <div class="card" style="padding:12px"><strong>Correo:</strong><br><span style="color:var(--muted)">rincangel32@gmail.com</span></div>
+          <div class="card" style="padding:12px"><strong>Instagram:</strong><br><a href="https://www.instagram.com/rncon.2502?igsh=dDkzbjk1Z2wyOHVy" style="color:var(--accent);text-decoration:none;">rncon.2502</a></div>
+          <div class="card" style="padding:12px">
+            <strong>Horario de atención:</strong><br>
+            <span style="color:var(--muted)">Lunes a Viernes: 9:00 - 18:00</span><br>
+            <span style="color:var(--muted)">Sábados: 10:00 - 14:00</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div>&copy; <span id="year"></span> Explora Mundo — Todos los derechos reservados.</div>
+    </footer>
+  </main>
+
+  <!-- Modal for destination details -->
+  <div class="modal" id="destinationModal">
+    <div class="modal-content">
+      <button class="modal-close" id="modalClose" aria-label="Cerrar modal">×</button>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
+  <!-- Modal especial para paquete misterioso -->
+  <div class="modal" id="mysteryModal">
+    <div class="modal-content">
+      <button class="modal-close" id="mysteryModalClose" aria-label="Cerrar modal">×</button>
+      <div id="mysteryModalContent" style="padding: 20px; text-align: center;">
+        <!-- Contenido dinámico del paquete misterioso -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast notifications -->
+  <div class="toast" id="toast"></div>
+
+  <!-- Back to top button -->
+  <div class="back-to-top" id="backToTop" aria-label="Volver arriba">↑</div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    
+    // Header scroll effect
+    window.addEventListener('scroll', function() {
+      const header = document.getElementById('header');
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+      
+      // Back to top button
+      const backToTop = document.getElementById('backToTop');
+      if (window.scrollY > 300) {
+        backToTop.classList.add('visible');
+      } else {
+        backToTop.classList.remove('visible');
+      }
+    });
+    
+    // Back to top functionality
+    document.getElementById('backToTop').addEventListener('click', function() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+    
+    // Package selection
+    function selectPackage(packageName) {
+      document.getElementById('package').value = packageName;
+      document.getElementById('contacto').scrollIntoView({ behavior: 'smooth' });
+      showToast(`Paquete ${packageName} seleccionado`, 'success');
+    }
+
+    // ===== NUEVA FUNCIÓN PARA PAQUETE MISTERIOSO =====
+    function selectMysteryPackage() {
+      // Array de destinos misteriosos posibles
+      const mysteryDestinations = [
+        {
+          name: "Isla Secreta del Caribe",
+          description: "Una isla privada con playas vírgenes y aguas cristalinas. Incluye buceo con tortugas y cena privada en la playa.",
+          image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?q=80&w=600&auto=format&fit=crop",
+          activities: ["Buceo con tortugas marinas", "Cena privada en la playa", "Tour de snorkel en arrecife", "Masajes en la playa"]
+        },
+        {
+          name: "Retiro en Montañas Místicas",
+          description: "Un refugio en las montañas con aguas termales, yoga al amanecer y conexión total con la naturaleza.",
+          image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=600&auto=format&fit=crop",
+          activities: ["Sesiones de yoga al amanecer", "Baños en aguas termales", "Senderismo guiado", "Meditación en la naturaleza"]
+        },
+        {
+          name: "Aventura Cultural Oculta",
+          description: "Descubre tradiciones ancestrales en un pueblo mágico con experiencias gastronómicas únicas.",
+          image: "https://images.unsplash.com/photo-1583531336318-5983502ccacc?q=80&w=600&auto=format&fit=crop",
+          activities: ["Clase de cocina tradicional", "Tour de arte local", "Ceremonia cultural", "Degustación de productos locales"]
+        }
+      ];
+      
+      // Seleccionar un destino aleatorio
+      const randomDestination = mysteryDestinations[Math.floor(Math.random() * mysteryDestinations.length)];
+      
+      // Mostrar modal con la revelación
+      const modalContent = document.getElementById('mysteryModalContent');
+      modalContent.innerHTML = `
+        <div class="reveal-animation">
+          <h2 style="color: var(--mystery); margin-bottom: 20px;">¡Destino Revelado! 🎉</h2>
+          <img src="${randomDestination.image}" alt="${randomDestination.name}" style="width:100%;height:200px;object-fit:cover;border-radius:8px;margin-bottom:20px;">
+          <h3>${randomDestination.name}</h3>
+          <p>${randomDestination.description}</p>
+          <div style="text-align:left; margin:20px 0;">
+            <h4>Experiencias Incluidas:</h4>
+            <ul>
+              ${randomDestination.activities.map(activity => `<li>${activity}</li>`).join('')}
+            </ul>
+          </div>
+          <p><strong>El destino final se confirmará 48 horas antes del viaje</strong></p>
+          <button class="cta cta-mystery" onclick="confirmMysteryPackage('${randomDestination.name}')" style="margin-top:15px;">
+            ¡Confirmar Aventura Misteriosa!
+          </button>
+        </div>
+      `;
+      
+      // Mostrar el modal
+      document.getElementById('mysteryModal').classList.add('active');
+    }
+
+    // ===== CONFIRMACIÓN DEL PAQUETE MISTERIOSO =====
+    function confirmMysteryPackage(destinationName) {
+      // Cerrar el modal de revelación
+      document.getElementById('mysteryModal').classList.remove('active');
+      
+      // Llenar el formulario automáticamente
+      document.getElementById('package').value = "Misterioso";
+      
+      // Scroll a contacto
+      document.getElementById('contacto').scrollIntoView({ behavior: 'smooth' });
+      
+      // Mostrar notificación especial
+      showToast(`¡Aventura Misteriosa confirmada! Te espera ${destinationName} ✨`, 'mystery');
+      
+      // Agregar al carrito
+      addToCart('Misterioso');
+    }
+    
+    // Form validation and submission
+    function validateForm() {
+      let isValid = true;
+      
+      // Reset error messages
+      document.querySelectorAll('.error-message').forEach(el => {
+        el.style.display = 'none';
+      });
+      
+      // Validate name
+      const name = document.getElementById('name').value.trim();
+      if (name === '') {
+        document.getElementById('nameError').style.display = 'block';
+        isValid = false;
+      }
+      
+      // Validate email
+      const email = document.getElementById('email').value.trim();
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        document.getElementById('emailError').style.display = 'block';
+        isValid = false;
+      }
+      
+      // Validate package
+      const package = document.getElementById('package').value;
+      if (package === '') {
+        document.getElementById('packageError').style.display = 'block';
+        isValid = false;
+      }
+      
+      // Validate message
+      const message = document.getElementById('message').value.trim();
+      if (message === '') {
+        document.getElementById('messageError').style.display = 'block';
+        isValid = false;
+      }
+      
+      return isValid;
+    }
+    
+    // Form submission
+    function submitForm(e){
+      e.preventDefault();
+      
+      if (!validateForm()) {
+        return;
+      }
+      
+      const form = document.getElementById('contactForm');
+      const submitBtn = document.getElementById('submitBtn');
+      const name = document.getElementById('name').value;
+      const package = document.getElementById('package').value;
+      const successMessage = document.getElementById('successMessage');
+      
+      // Show loading state
+      form.classList.add('loading');
+      submitBtn.innerHTML = '<span class="spinner"></span> Enviando...';
+      submitBtn.disabled = true;
+      
+      // Simulate form submission
+      setTimeout(function() {
+        form.classList.remove('loading');
+        submitBtn.innerHTML = 'Enviar';
+        submitBtn.disabled = false;
+        successMessage.textContent = `¡Gracias ${name}! Hemos recibido tu solicitud para el paquete ${package}. Te contactaremos pronto.`;
+        successMessage.style.display = 'block';
+        form.reset();
+        
+        // Hide success message after 5 seconds
+        setTimeout(function() {
+          successMessage.style.display = 'none';
+        }, 5000);
+      }, 1500);
+    }
+    
+    // Mobile menu functionality
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const navLinks = document.getElementById('navLinks');
+    
+    mobileMenuBtn.addEventListener('click', function() {
+      navLinks.classList.toggle('active');
+      mobileMenuBtn.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
+    });
+    
+    // Close mobile menu when clicking on a link
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', function() {
+        if (window.innerWidth <= 900) {
+          navLinks.classList.remove('active');
+          mobileMenuBtn.textContent = '☰';
+        }
+      });
+    });
+    
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', function(event) {
+      if (window.innerWidth <= 900 && 
+          !navLinks.contains(event.target) && 
+          !mobileMenuBtn.contains(event.target) &&
+          navLinks.classList.contains('active')) {
+        navLinks.classList.remove('active');
+        mobileMenuBtn.textContent = '☰';
+      }
+    });
+    
+    // Toast notification system
+    function showToast(message, type = 'info') {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.className = 'toast';
+      toast.classList.add(type, 'show');
+      
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3000);
+    }
+    
+    // Favorite functionality
+    document.querySelectorAll('.favorite-btn').forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        this.classList.toggle('active');
+        const destination = this.closest('.card').querySelector('h3').textContent;
+        
+        if (this.classList.contains('active')) {
+          showToast(`${destination} añadido a favoritos`, 'success');
+        } else {
+          showToast(`${destination} eliminado de favoritos`, 'warning');
+        }
+      });
+    });
+    
+    // Search and filter functionality
+    const searchInput = document.getElementById('searchInput');
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const destinationCards = document.querySelectorAll('.card[data-category]');
+    
+    searchInput.addEventListener('input', filterDestinations);
+    
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', function() {
+        filterButtons.forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        filterDestinations();
+      });
+    });
+    
+    function filterDestinations() {
+      const searchTerm = searchInput.value.toLowerCase();
+      const activeFilter = document.querySelector('.filter-btn.active').dataset.filter;
+      
+      destinationCards.forEach(card => {
+        const title = card.querySelector('h3').textContent.toLowerCase();
+        const description = card.querySelector('p').textContent.toLowerCase();
+        const categories = card.dataset.category.split(' ');
+        
+        const matchesSearch = title.includes(searchTerm) || description.includes(searchTerm);
+        const matchesFilter = activeFilter === 'all' || categories.includes(activeFilter);
+        
+        if (matchesSearch && matchesFilter) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+    
+    // Modal functionality
+    const modal = document.getElementById('destinationModal');
+    const modalClose = document.getElementById('modalClose');
+    const modalContent = document.getElementById('modalContent');
+    
+    modalClose.addEventListener('click', function() {
+      modal.classList.remove('active');
+    });
+    
+    modal.addEventListener('click', function(e) {
+      if (e.target === modal) {
+        modal.classList.remove('active');
+      }
+    });
+
+    // Cerrar modal misterioso
+    document.getElementById('mysteryModalClose').addEventListener('click', function() {
+      document.getElementById('mysteryModal').classList.remove('active');
+    });
+
+    document.getElementById('mysteryModal').addEventListener('click', function(e) {
+      if (e.target === this) {
+        this.classList.remove('active');
+      }
+    });
+    
+    // Add click event to destination cards to show modal
+    destinationCards.forEach(card => {
+      card.addEventListener('click', function() {
+        const title = this.querySelector('h3').textContent;
+        const description = this.querySelector('p').textContent;
+        const imageSrc = this.querySelector('img').src;
+        const category = this.dataset.category;
+        
+        modalContent.innerHTML = `
+          <div style="padding: 20px;">
+            <img src="${imageSrc}" alt="${title}" style="width:100%;height:300px;object-fit:cover;border-radius:8px;">
+            <h2 style="margin-top:20px;">${title}</h2>
+            <p>${description}</p>
+            <div style="margin-top:20px;">
+              <button class="cta" onclick="selectPackage('Estándar')">Solicitar información</button>
+            </div>
+          </div>
+        `;
+        
+        modal.classList.add('active');
+      });
+    });
+    
+    // Real-time form validation
+    const formInputs = document.querySelectorAll('#contactForm input, #contactForm textarea, #contactForm select');
+    
+    formInputs.forEach(input => {
+      input.addEventListener('blur', function() {
+        validateField(this);
+      });
+      
+      input.addEventListener('input', function() {
+        // Remove error styling when user starts typing
+        if (this.classList.contains('invalid')) {
+          this.classList.remove('invalid');
+          const errorElement = document.getElementById(this.id + 'Error');
+          if (errorElement) {
+            errorElement.style.display = 'none';
+          }
+        }
+      });
+    });
+    
+    function validateField(field) {
+      const value = field.value.trim();
+      let isValid = true;
+      
+      if (field.type === 'text' && field.id === 'name') {
+        isValid = value !== '';
+      } else if (field.type === 'email') {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        isValid = emailRegex.test(value);
+      } else if (field.tagName === 'SELECT') {
+        isValid = value !== '';
+      } else if (field.tagName === 'TEXTAREA') {
+        isValid = value !== '';
+      }
+      
+      if (isValid) {
+        field.classList.remove('invalid');
+        field.classList.add('valid');
+      } else {
+        field.classList.remove('valid');
+        field.classList.add('invalid');
+      }
+      
+      return isValid;
+    }
+    
+    // Shopping cart functionality
+    let cartCount = 0;
+    const cartBtn = document.getElementById('cartBtn');
+    const cartCountElement = document.getElementById('cartCount');
+    
+    cartBtn.addEventListener('click', function() {
+      showToast(`Tienes ${cartCount} paquete(s) en el carrito`, 'info');
+    });
+
+    // Función para agregar al carrito
+    function addToCart(packageName) {
+      cartCount++;
+      cartCountElement.textContent = cartCount;
+      cartCountElement.style.display = 'flex';
+      showToast(`Paquete ${packageName} añadido al carrito`, 'success');
+    }
+    
+    // Add to cart functionality for packages
+    document.querySelectorAll('.pkg .cta:not(.cta-mystery)').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const packageName = this.closest('.pkg').querySelector('h3').textContent;
+        addToCart(packageName);
+      });
+    });
+    
+    // Keyboard navigation
+    document.addEventListener('keydown', function(e) {
+      // Escape key closes modal
+      if (e.key === 'Escape') {
+        if (modal.classList.contains('active')) {
+          modal.classList.remove('active');
+        }
+        if (document.getElementById('mysteryModal').classList.contains('active')) {
+          document.getElementById('mysteryModal').classList.remove('active');
+        }
+      }
+    });
+  </script>
+</body>
+</html>
