@@ -1,35 +1,205 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-  <title>The sitio</title>
-  <link rel="stylesheet" href="styles.css" />
+    <meta charset="UTF-8">
+    <title>Mi Blog Personal</title>
+    <style>
+        /* Estilos Generales*/
+        body {
+            background-color: #1c1c1c; /* Fondo negro */
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #ffffff; /* Texto blanco */
+        }
+
+        /* Encabezado */
+        header {
+            background-color: #8b0000; /* Rojo oscuro */
+            color: white;
+            padding: 20px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        /* Menú de navegación */
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        nav ul li a:hover {
+            color: #ff4500; /* Rojo intenso al pasar cursor */
+        }
+
+        /* Contenedor principal */
+        main {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+
+        /* Sección de presentación */
+        .presentacion {
+            background-color: #4b0000; /* Tinto oscuro */
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .presentacion h2 {
+            color: #ff4500; /* Rojo intenso */
+            text-align: center;
+        }
+        .presentacion p {
+            font-size: 18px;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        /* Últimas publicaciones */
+        .publicaciones {
+            background-color: #4b0000;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .publicaciones h3 {
+            color: #ff4500;
+            margin-bottom: 15px;
+        }
+        .publicaciones ul {
+            list-style: none;
+            padding: 0;
+        }
+        .publicaciones li {
+            display: flex; /* Alinea miniatura y texto */
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .publicaciones img {
+            width: 60px; /* Miniatura */
+            height: 60px;
+            border-radius: 8px;
+            margin-right: 15px;
+        }
+        .publicaciones a {
+            color: #ff6347; /* Rojo claro */
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        .publicaciones a:hover {
+            text-decoration: underline;
+        }
+
+        /* Enlaces destacados */
+        .destacados {
+            background-color: #4b0000;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .destacados a {
+            display: inline-block;
+            background-color: #8b0000;
+            color: white;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        .destacados a:hover {
+            background-color: #ff4500;
+        }
+
+        /* Frase motivadora */
+        .frase {
+            text-align: center;
+            font-style: italic;
+            margin: 20px 0;
+            color: #ff6347;
+        }
+
+        /* Pie de página */
+        footer {
+            background-color: #000000;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <h1>El sitio de prueba</h1>
-    <p>Esta es nuestra primera web en línea.</p>
-    <nav>
-      <ul>
-        <a href="Tecnopatias.html">Tecnopatias de Camila</a>
-        <a href="tecnopatia.html">Tecnopatias Jona</a>
-      </ul>
-      
-    </nav>
-  </header>
+    <!-- Encabezado con Menú -->
+    <header>
+        <h1>Mi Blog Personal</h1>
+        <nav> 
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="Acerca de mi.html" target="_blank">Acerca de mí</a></li>
+                <li><a href="https://www.google.com" target="_blank">Google</a></li>
+                <li><a href="Contacto.html" target="_blank">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
 
+    <!-- Contenido Principal -->
+    <main>
+        <!-- Presentación -->
+        <div class="presentacion">
+            <h2>¡Bienvenido a mi blog!</h2>
+            <p>Soy Angel Rincon y aquí comparto mis descubrimientos sobre tecnología, libros, y todo lo que me apasiona.</p>
+        </div>
 
-  <main>
-    <section>
-      <h2>Sección principal</h2>
-      <p>Contenido de ejemplo.</p>
-    </section>
-  </main>
+        <!-- Últimas publicaciones con enlace funcional -->
+        <div class="publicaciones">
+            <h3>Últimas publicaciones</h3>
+            <ul>
+                <li>
+                    <img src=https://dinahosting.com/blog/upload/2018/06/lenguajes-de-programaci%C3%B3n-1-1.jpg alt="Programación">
+                    <a href="programacion.html">Cómo aprender programación desde cero</a> - 15 Septiembre 2025
+                </li>
+                <li>
+                    <img src=https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4vBBKVN-jQ7K-jqAhU4qPRWrvdeOFjwm3Lw&s alt="Libros">
+                    <a href="#">Resumen de libros de ciencia ficción</a> - 10 Septiembre 2025
+                </li>
+                <li>
+                    <img src=https://i.pinimg.com/736x/d2/c8/f0/d2c8f0e9e1637239e81e5ec900e187a1.jpg alt="Productividad">
+                    <a href="#">Consejos para mantenerse productivo</a> - 5 Septiembre 2025
+                </li>
+            </ul>
+        </div>
 
-  <footer>
-    <p>&copy; Equipo del descompuesto</p>
-  </footer>
+        <!-- Enlaces destacados -->
+        <div class="destacados">
+            <a href="Acerca de mi.html" target="_blank">Acerca de mí</a>
+            <a href="Contacto.html" target="_blank">Contacto</a>
+            <a href="https://instagram.com/tu_usuario" target="_blank">Instagram 📷</a>
+        </div>
 
-  <script src="script.js"></script>
+        <!-- Frase motivadora -->
+        <div class="frase">
+            "Aprender algo nuevo cada día es el verdadero progreso."
+        </div>
+    </main>
+
+    <!-- Pie de página -->
+    <footer>
+        <p>&copy; 2025 Mi Blog Personal. Todos los derechos reservados</p>
+    </footer>
 </body>
+</html>
