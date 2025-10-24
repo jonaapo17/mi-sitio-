@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EtiquetasHTML</title>
+    <style>
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: linear-gradient(135deg, #c9e9ff, #f8f9fa);
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #538b0e;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            border-bottom: 4px solid #059247;
+            border-radius: 0 0 20px 20px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.2em;
+        }
+
+        main {
+            padding: 30px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #05a810;
+            color: white;
+            font-size: 1.1em;
+            text-transform: uppercase;
+        }
+
+        tr:nth-child(even) {
+            background-color: #a1eaa9;
+        }
+
+        tr:hover {
+            background-color: #78f587;
+            transition: 0.3s;
+        }
+
+        td {
+            color: #333;
+        }
+
+        footer {
+            background-color: #28aa3f;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            margin-top: 30px;
+            border-top: 4px solid #008a2c;
+            border-radius: 20px 20px 0 0;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 0.95em;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>EtiquetasHTML</h1>
+        <p>Tabla de las etiquetas básicas de HTML, su función y un ejemplo.</p>
+    </header>
+
+    <main>
+        <section>
+            <table>
+                <tr>
+                    <th>Etiqueta</th>
+                    <th>Función</th>
+                    <th>Ejemplo</th>
+                </tr>
+                <tr><td>&lt;header&gt;</td><td>Define la cabecera de una página o sección.</td><td>&lt;header&gt;Encabezado&lt;/header&gt;</td></tr>
+                <tr><td>&lt;main&gt;</td><td>Contiene el contenido principal del documento.</td><td>&lt;main&gt;Contenido principal&lt;/main&gt;</td></tr>
+                <tr><td>&lt;nav&gt;</td><td>Contiene enlaces de navegación.</td><td>&lt;nav&gt;&lt;a href="#"&gt;Inicio&lt;/a&gt;&lt;/nav&gt;</td></tr>
+                <tr><td>&lt;body&gt;</td><td>Contiene todo el contenido visible de la página.</td><td>&lt;body&gt;Contenido&lt;/body&gt;</td></tr>
+                <tr><td>&lt;footer&gt;</td><td>Define el pie de página.</td><td>&lt;footer&gt;© 2025&lt;/footer&gt;</td></tr>
+                <tr><td>&lt;section&gt;</td><td>Define una sección o bloque temático.</td><td>&lt;section&gt;Tema 1&lt;/section&gt;</td></tr>
+                <tr><td>&lt;h1&gt;...&lt;h6&gt;</td><td>Encabezados de distintos niveles.</td><td>&lt;h1&gt;Título&lt;/h1&gt;</td></tr>
+                <tr><td>&lt;p&gt;</td><td>Define un párrafo.</td><td>&lt;p&gt;Texto de ejemplo&lt;/p&gt;</td></tr>
+                <tr><td>&lt;p&gt;&lt;b&gt;</td><td>Texto en negritas.</td><td>&lt;p&gt;&lt;b&gt;Importante&lt;/b&gt;&lt;/p&gt;</td></tr>
+                <tr><td>&lt;p&gt;&lt;i&gt;</td><td>Texto en cursiva.</td><td>&lt;p&gt;&lt;i&gt;Ejemplo&lt;/i&gt;&lt;/p&gt;</td></tr>
+                <tr><td>&lt;br&gt;</td><td>Salto de línea.</td><td>Primera línea&lt;br&gt;Segunda línea</td></tr>
+                <tr><td>&lt;a&gt;</td><td>Crea un enlace.</td><td>&lt;a href="https://www.google.com"&gt;Google&lt;/a&gt;</td></tr>
+                <tr><td>&lt;img&gt;</td><td>Muestra una imagen.</td><td>&lt;img src="imagen.jpg" alt="Descripción"&gt;</td></tr>
+                <tr><td>&lt;q&gt;</td><td>Define una cita corta.</td><td>&lt;q&gt;El conocimiento es poder.&lt;/q&gt;</td></tr>
+                <tr><td>&lt;abbr&gt;</td><td>Abreviatura o acrónimo.</td><td>&lt;abbr title="HyperText Markup Language"&gt;HTML&lt;/abbr&gt;</td></tr>
+                <tr><td>&lt;address&gt;</td><td>Información de contacto.</td><td>&lt;address&gt;contacto@email.com&lt;/address&gt;</td></tr>
+                <tr><td>&lt;cite&gt;</td><td>Título de una obra.</td><td>&lt;cite&gt;El Quijote&lt;/cite&gt;</td></tr>
+                <tr><td>&lt;title&gt;</td><td>Título del documento.</td><td>&lt;title&gt;Mi página&lt;/title&gt;</td></tr>
+                <tr><td>&lt;p&gt;&lt;sup&gt;</td><td>Superíndice.</td><td>&lt;p&gt;x&lt;sup&gt;2&lt;/sup&gt;&lt;/p&gt;</td></tr>
+                <tr><td>&lt;p&gt;&lt;sub&gt;</td><td>Subíndice.</td><td>&lt;p&gt;H&lt;sub&gt;2&lt;/sub&gt;O&lt;/p&gt;</td></tr>
+		<tr><td>&lt;ul&gt;<td>Crea una lista no ordenada (con viñetas).</td><td>&lt;p&gt;H&lt;sub&gt;2&lt;/sub&gt;O&lt;/p&gt;</td></tr>
+		
+		
+            </table>
+        </section>
+    </main>
+
+    <footer>
+        <p>Creado por Maria Jose Hernandez— 2025</p>
+    </footer>
+
+</body>
+</html>
