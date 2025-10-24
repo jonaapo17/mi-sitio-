@@ -1,28 +1,96 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-  <title>The sitio</title>
-  <link rel="stylesheet" href="styles.css" />
+<!DOCTYPE html> <!--indica que el documento esta escrito en html 5-->
+<html lang="es"> <!--define el idioma principal de la pagina como español-->
+<head> <!--contiene metadatos e informacion de la pagina-->
+<meta charset="UTF-8"> <!--codificacion de caracteres(UTF-8 admite acentos y simbolos especiales)-->
+<style type="text/css">
+<style>
+    body {
+      margin: 0;<!--Definimos el margen, las tipografias y el color de fondo del cuerpo-->
+
+      font-family: "Segoe UI", sans-serif;
+      background: linear-gradient(135deg, #6dd5ed, #2193b0);
+      color: #333;
+    }
+
+    header {<!--Aqui defini el fondo del encabezado, alineacion del texto etc...-->
+
+      background: rgba(255, 255, 255, 0.8);
+      padding: 20px;<!--Borde-->
+
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    header h1 {
+      margin: 0;	
+      font-size: 2.5rem;
+      color: lightpink;
+      text-align:center;
+    }
+
+    nav {
+      margin-top: 10px;
+    }
+
+    main {
+      padding: 50px 20px;
+      text-align: center;
+    }
+
+    main h2 {
+      font-size: 2rem;
+      color: lightpurple;
+      margin-bottom: 20px;
+    
+    }
+
+    main p {
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin: auto;
+      color: black;
+    }
+
+    footer {
+      background: rgba(0,0,0,0.2);
+      color: black;
+      text-align: center;
+      padding: 15px;
+      position: fixed;
+      width: 100%;
+      bottom: 0;
+    }
+  </style>
 </head>
+
 <body>
   <header>
-    <h1>El sitio de prueba</h1>
-    <p>Esta es nuestra primera web en línea.</p>
+<h1>🌐Tecnopatias🌐</h1>
   </header>
 
   <main>
-    <section>
-      <h2>Sección principal</h2>
-      <p>Contenido de ejemplo.</p>
-    </section>
+    <h2>Que son las tecnopatias</h2>
+    <p>Son el conjunto de problemas fisicos, mentales o sociales que aparecen por el uso excesivo o inadecuado de la tecnologia(celulares, computadoras tablet etc...)
+      </p>
+<h2>Molestias que genera</h2>
+
+<ul>
+<li>Dolor de cuello
+<li>Dolor de espalda
+<li>Eansancio visual
+<li>Estres en exceso o dependencia a la tecnologia
+</ul>
+</h2>
+<h2>Como evitar las tecnopatias</h2>
+<p>Evitando el uso excesivo de las tecnologias</p>
+<p>Hablar con personas de apoyo para ayudar con el problema</p>
+<p>Hacer otras actividades para pasar menos  tiempo en las tecnologias</p>
+
+
+
+  <img src="C:\Users\monse\OneDrive\Desktop\Emoticare\cerebrito.jpg"width="400" height="300" alt="Emoticare" tittle= "Armonia mental">  
   </main>
-
-  <footer>
-    <p>&copy; Equipo del descompuesto</p>
+ <footer>
+    © 2025 Tecnopatia - Basta de las tecnopatias
   </footer>
-
-  <script src="script.js"></script>
 </body>
 </html>
